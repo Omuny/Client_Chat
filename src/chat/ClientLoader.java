@@ -33,14 +33,14 @@ public class ClientLoader {
 
     private static void connect() {
         try {
-            socket = new Socket("localhost", 1446);
+            socket = new Socket("localhost", 8888);
         } catch (IOException ex) {
             ex.printStackTrace();
         }
     }
 
     private static void handle() {
-        sendPacket(new PacketAuthorize("Ali"));
+        sendPacket(new PacketAuthorize("Ali " + System.currentTimeMillis()));
     }
 
     private static void end() {
