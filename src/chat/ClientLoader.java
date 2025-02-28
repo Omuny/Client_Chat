@@ -1,6 +1,7 @@
 package chat;
 
 import chat.packet.Packet;
+import chat.packet.PacketAuthorize;
 
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -13,6 +14,9 @@ public class ClientLoader {
     public static void main(String[] args) {
         connect();
         handle();
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException ex) {}
         end();
     }
 
@@ -36,13 +40,7 @@ public class ClientLoader {
     }
 
     private static void handle() {
-        try {
-            DataOutputStream dos = new DataOutputStream(socket.getOutputStream());
-            dos.writeInt(117);
-            dos.flush();
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
+        sendPacket(new PacketAuthorize("Ali"));
     }
 
     private static void end() {
