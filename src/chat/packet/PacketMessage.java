@@ -6,7 +6,8 @@ import java.io.IOException;
 
 public class PacketMessage extends Packet {
 
-    private String sender, message;
+    private String sender;
+    private String message;
 
     public PacketMessage() {}
 

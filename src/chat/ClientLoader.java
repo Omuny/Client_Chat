@@ -1,6 +1,7 @@
 package chat;
 
 import chat.packet.Packet;
+import chat.packet.PacketAuthorize;
 import chat.packet.PacketManager;
 import chat.packet.PacketMessage;
 import java.io.DataInputStream;
@@ -12,6 +13,7 @@ import java.util.Scanner;
 public class ClientLoader {
 
     private static Socket socket;
+    private static boolean sentNickname = false;
 
     public static void main(String[] args) {
         connect();
@@ -75,6 +77,11 @@ public class ClientLoader {
         while (true) {
             if (scan.hasNextLine()) {
                 String line = scan.nextLine();
+                if(!sentNickname) {
+                    sentNickname = true;
+                    sendPacket(new PacketAuthorize(line));
+                    continue;
+                }
                 sendPacket(new PacketMessage(null, line));
             } else {
                 try {
