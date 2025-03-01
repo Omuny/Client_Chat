@@ -17,10 +17,7 @@ public class ClientLoader {
 
     public static void main(String[] args) {
         connect();
-        readChat();
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException ex) {}
+        handle();
         end();
     }
 
@@ -68,7 +65,6 @@ public class ClientLoader {
             }
         };
         handler.start();
-
         readChat();
     }
 
@@ -77,6 +73,9 @@ public class ClientLoader {
         while (true) {
             if (scan.hasNextLine()) {
                 String line = scan.nextLine();
+                if(line.equals("/end")) {
+                    end();
+                }
                 if(!sentNickname) {
                     sentNickname = true;
                     sendPacket(new PacketAuthorize(line));
@@ -97,5 +96,6 @@ public class ClientLoader {
         } catch (IOException ex) {
             ex.printStackTrace();
         }
+        System.exit(0);
     }
 }

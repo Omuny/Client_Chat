@@ -8,9 +8,7 @@ public class PacketAuthorize extends Packet {
 
     private String nickname;
 
-    public PacketAuthorize() {
-
-    }
+    public PacketAuthorize() {}
 
     public PacketAuthorize(String nickname) {
         this.nickname = nickname;
@@ -28,11 +26,11 @@ public class PacketAuthorize extends Packet {
 
     @Override
     public void read(DataInputStream dis) throws IOException {
-
+        // Этот метод переписан в PacketMessage
     }
 
     @Override
     public void handle() {
-
+        // Этот метод переписан в PacketMessage
     }
 }
